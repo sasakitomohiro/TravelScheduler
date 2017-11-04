@@ -16,11 +16,13 @@ function initMap() {
   //   ],
   //   travelMode: google.maps.DirectionsTravelMode.WALKING, // 交通手段(歩行。DRIVINGの場合は車)
   // };
-  var position = [];
+
+  // trueになると1回クリックしたこととなる
+  var count = false;
   // マップの生成
   var map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(39.7018784, 141.1363000), // マップの中心
-    zoom: 15 // ズームレベル
+    zoom: 12 // ズームレベル
   });
 
   var d = new google.maps.DirectionsService(); // ルート検索オブジェクト
@@ -37,11 +39,31 @@ function initMap() {
   // });
   // クリックイベントを追加
   map.addListener('click', function(e) {
-    position += e.latLng;
-    document.getElementById('pos').textContent = position;
+    // document.getElementById('pos').textContent = position;
+    var position1, position2, position3, position4;
     getClickLatLng(e.latLng, map);
+    if (count == false) {
+      position1 = e.latLng.lat();
+      position2 = e.latLng.lng();
+      localStorage.setItem('Key1', position1);
+      localStorage.setItem('Key2', position2);
+      count = true;
+    } else if (count == true) {
+      position3 = e.latLng.lat();
+      position4 = e.latLng.lng();
+
+      localStorage.setItem('Key3', position3);
+      localStorage.setItem('Key4', position4);
+      // localStorage.saveKey = position1;
+      // localStorage.saveKey = position2;
+      // localStorage.saveKey = position3;
+      // localStorage.saveKey = position4;
+      window.location.href = 'root.html';
+       count = false;
+    }
   });
 }
+
 function getClickLatLng(lat_lng, map) {
 
   // 座標を表示
