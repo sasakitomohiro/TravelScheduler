@@ -7,5 +7,7 @@ Vue.component("common-menu", {
       </a>
     </div>`,
 methods: {
+
+  
 }
 });
