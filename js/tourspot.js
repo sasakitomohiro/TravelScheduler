@@ -1,3 +1,5 @@
+var googleMapsApiKey = "AIzaSyAfSkp02Oolofi2mSnRYBJBNDI6nL--WyM";
+var resasApiKey = "enEaijBPxOMF1ipXMXiKaey1nZwPpDpxEm4J1IsY";
 var vm = new Vue({
   el: "#app", // Vue.jsを使うタグのIDを指定
   data: {
@@ -12,8 +14,7 @@ var vm = new Vue({
     // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
     fetch(url + "/api/v1/tourism/attractions?prefCode=3&cityCode=-" , { //クエリストリング
       method: "GET",
-      headers: {"X-API-KEY": qCZs5hGw3zFzzDwyxveXjMDRhBWHCS77DARwsKLt
-}
+      headers: {"X-API-KEY": resasApiKey}
     })
     .then(function(response) {
       if (response.status == 200) { //成功時

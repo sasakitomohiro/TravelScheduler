@@ -21,14 +21,15 @@
 </head>
 
 <body>
+  
   <!-- Vue.jsで読み込む -->
   <div id="app">
     <common-menu current="index"></common-menu>
     <div class="ui main container">
       <ul>
         <!-- pos に緯度経度の配列を保持  -->
-        <li>距離: <span id="value"></span></li>
-        <li>所要時間: <span id="time"></span></li>
+        <li>距離: <span id="value"></span>m</li>
+        <li>所要時間: <span id="time"></span>秒</li>
       </ul>
     </div>
   </div>
@@ -36,8 +37,6 @@
     <!-- 基本的なコンテンツはここに記載する -->
   </div>
 
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfSkp02Oolofi2mSnRYBJBNDI6nL--WyM&callback=initMap" async defer></script>
   <!-- APIのURLを読み込むJavaScriptファイル --> 
   <script src="js/menu.js" charset="utf-8"></script>
   <script src="js/apikey.js" charset="utf-8"></script>

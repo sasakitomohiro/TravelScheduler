@@ -1,3 +1,5 @@
+var googleMapsApiKey = "AIzaSyAfSkp02Oolofi2mSnRYBJBNDI6nL--WyM";
+var resasApiKey = "enEaijBPxOMF1ipXMXiKaey1nZwPpDpxEm4J1IsY";
 var src = "https://maps.googleapis.com/maps/api/js?key=" + googleMapsApiKey + "&callback=initMap";
 var sc = document.createElement('script');
 sc.src = src; //関数などで処理したものでもOK
@@ -15,7 +17,7 @@ function initMap() {
     origin: new google.maps.LatLng(position1, position2), // 出発地
     destination: new google.maps.LatLng(position3, position4), // 目的地
     waypoints: [ // 経由地点(指定なしでも可)
-       { location: new google.maps.LatLng(39.630152,141.74044) },  // 例
+      //  { location: new google.maps.LatLng(39.630152,141.74044) },  // 例
     ],
     travelMode: google.maps.DirectionsTravelMode.DRIVING, // 交通手段(歩行。DRIVINGの場合は車)
   };
@@ -53,3 +55,9 @@ function initMap() {
     }
   });
 }
+
+$(function() {
+    //フォーマットの変更などはプロパティを書き換えることで柔軟にできます。
+    //詳しくは参考リンクを読んでみてください。
+    $('.timepicker').timepicker({ 'timeFormat': 'H:i' });
+ });
