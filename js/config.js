@@ -1,1 +1,2 @@
-var url = "https://opendata.resas-portal.go.jp";
+var resasUrl = "https://opendata.resas-portal.go.jp";
+var gurunaviUrl = "https://api.gnavi.co.jp";
