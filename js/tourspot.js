@@ -12,7 +12,7 @@ var vm = new Vue({
     // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
     fetch(url + "/api/v1/tourism/attractions?prefCode=3&cityCode=-" , { //クエリストリング
       method: "GET",
-      headers: {"X-API-KEY": "yourkey"}
+      headers: {"X-API-KEY": resasApiKey}
     })
     .then(function(response) {
       if (response.status == 200) { //成功時

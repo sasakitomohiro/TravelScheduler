@@ -1,3 +1,8 @@
+var src = "https://maps.googleapis.com/maps/api/js?key=" + googleMapsApiKey + "&callback=initMap";
+var sc = document.createElement('script');
+sc.src = src; //関数などで処理したものでもOK
+document.body.appendChild(sc);
+
 function initMap() {
 
   // ルート検索の条件
