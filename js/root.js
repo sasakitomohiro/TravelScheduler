@@ -1,8 +1,19 @@
 function initMap() {
     // ルート検索の条件
+    let position1 = localStorage.getItem('Key1');
+    let position2 = localStorage.getItem('Key2');
+    let position3 = localStorage.getItem('Key3');
+    let position4 = localStorage.getItem('Key4');
+
+    // console.log(position1);
+    // console.log(position2);
+    // console.log(position3);
+    // console.log(position4);
+
+
     var request = {
-        origin: new google.maps.LatLng(35.681382,139.766084), // 出発地
-        destination: new google.maps.LatLng(34.73348,135.500109), // 目的地
+        origin: new google.maps.LatLng(position1, position2), // 出発地
+        destination: new google.maps.LatLng(position3, position4), // 目的地
         waypoints: [ // 経由地点(指定なしでも可)
         ],
         travelMode: google.maps.DirectionsTravelMode.WALKING, // 交通手段(歩行。DRIVINGの場合は車)
@@ -10,8 +21,8 @@ function initMap() {
 
     // マップの生成
     var map = new google.maps.Map(document.getElementById("map"), {
-        center: new google.maps.LatLng(35.681382,139.766084), // マップの中心
-        zoom: 7 // ズームレベル
+        center: new google.maps.LatLng(39.7018784, 141.1363000), // マップの中心
+        zoom: 12 // ズームレベル
     });
 
     var d = new google.maps.DirectionsService(); // ルート検索オブジェクト
