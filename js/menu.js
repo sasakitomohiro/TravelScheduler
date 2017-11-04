@@ -8,6 +8,5 @@ Vue.component("common-menu", {
     </div>`,
 methods: {
 
-  
 }
 });
