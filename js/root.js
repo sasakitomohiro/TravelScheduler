@@ -19,33 +19,59 @@ function initMap() {
 
 
 
-  console.log(items);
+  // console.log(items);
 
   m = 0; //秒数
+
+  var waypoint = [
+    // {
+    //   location: new google.maps.LatLng(39.7018784, 141.1363000)
+    // }
+  ];
+
+  var way = JSON.parse(localStorage.getItem("waypoint1"));
+  console.log(way);
+
+  if(way == true) {
+    waypoint.push({location: new google.maps.LatLng(way.lat,way.lng)});
+    console.log(way.lat,way.lng);
+    localStorage.removeItem("waypoint1");
+  }
+
+
+
+  // waypoint.push({
+  //   location: new google.maps.LatLng(39.7018784, 141.1363000)
+  // })
 
   var request = {
     origin: new google.maps.LatLng(position1, position2), // 出発地
     destination: new google.maps.LatLng(position3, position4), // 目的地
-    waypoints: [ // 経由地点(指定なしでも可)
-      //  { location: new google.maps.LatLng(39.630152,141.74044) },  // 例
-    ],
+    waypoints: waypoint,
     travelMode: google.maps.DirectionsTravelMode.DRIVING, // 交通手段(歩行。DRIVINGの場合は車)
   };
 
-
-
+  // request.waypoints = "location:" + new google.maps.LatLng(39.7018784, 141.1363000);
   // マップの生成
   var map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(39.7018784, 141.1363000), // マップの中心
     zoom: 12 // ズームレベル
   });
 
-  for(var i in items ) {
-    console.log(items[i].lat);
+  // ResasAPIを参照
+  for(var i in items) {
+    // console.log(items[i].lat);
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(items[i].lat, items[i].lng),
       map: map
     });
+    //クリックしたら指定したurlに遷移するイベント
+    google.maps.event.addListener(marker, 'click', (function(){
+      // return function(){ location.href = url; };
+      localStorage.setItem('waypoint1', JSON.stringify(items[i]));
+      console.log(localStorage.getItem("waypoint1"));
+      window.location.href = 'root.html';
+    }));
   }
 
   var directionsService = new google.maps.DirectionsService(); // ルート検索オブジェクト
@@ -87,11 +113,11 @@ function getValue(idname){
   //     str += array[i];
   // }
   str += ":00";
-  console.log(str);
-  console.log(result);
+  // console.log(str);
+  // console.log(result);
   let addTime = timeMath.toTimeFormat(m);
   let resultSum = timeMath.sum(str, addTime);
-  console.log(resultSum);
+  // console.log(resultSum);
   // // Alertで表示する
   alert("最終目的地到着時間は「" + resultSum + "」です");
 }
