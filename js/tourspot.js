@@ -2,8 +2,7 @@ var vm = new Vue({
   el: "#app", // Vue.jsを使うタグのIDを指定
   data: {
     // Vue.jsで使う変数はここに記述する
-    name,
-    tour: []
+    name
   },
   methods: {
     // Vue.jsで使う関数はここで記述する
@@ -30,6 +29,13 @@ var vm = new Vue({
       console.log(JSON.stringify(json.result.data));
       // vm.boards = json.posts;
       vm.name = json.result.data;
+
+      // for (var i=0 ; i<=json.result.data.length ; i++)
+      localStorage.setItem('Items', JSON.stringify(json.result.data));
+
+      console.log(localStorage.getItem("Items"));
+
+      // }
       // console.log(vm.boards);
     })
     .catch(function(err) {
@@ -37,6 +43,7 @@ var vm = new Vue({
       console.log(err);
       console.log("失敗しました");
     });
+    window.location.href = 'root.html';
   },
   computed: {
     // 計算した結果を変数として利用したいときはここに記述する
@@ -47,7 +54,6 @@ var vm = new Vue({
         array[i] = this.name[i].resourceName;
         console.log(array[i]);
       }
-      tour = array;
       return array;
     }
   }

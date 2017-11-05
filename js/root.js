@@ -8,12 +8,19 @@ document.body.appendChild(sc);
 
 $('#timepicker1').timepicker();  // timePicker
 
+let items = JSON.parse(localStorage.getItem('Items'));
+
 function initMap() {
   // ルート検索の条件
-  let position1 = localStorage.getItem('Key1');
-  let position2 = localStorage.getItem('Key2');
-  let position3 = localStorage.getItem('Key3');
-  let position4 = localStorage.getItem('Key4');
+  var position1 = localStorage.getItem('Key1');
+  var position2 = localStorage.getItem('Key2');
+  var position3 = localStorage.getItem('Key3');
+  var position4 = localStorage.getItem('Key4');
+
+
+
+  console.log(items);
+
   m = 0; //秒数
 
   var request = {
@@ -25,11 +32,21 @@ function initMap() {
     travelMode: google.maps.DirectionsTravelMode.DRIVING, // 交通手段(歩行。DRIVINGの場合は車)
   };
 
+
+
   // マップの生成
   var map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(39.7018784, 141.1363000), // マップの中心
     zoom: 12 // ズームレベル
   });
+
+  for(var i in items ) {
+    console.log(items[i].lat);
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(items[i].lat, items[i].lng),
+      map: map
+    });
+  }
 
   var directionsService = new google.maps.DirectionsService(); // ルート検索オブジェクト
   var directionsDisplay = new google.maps.DirectionsRenderer({ // ルート描画オブジェクト
@@ -76,7 +93,7 @@ function getValue(idname){
   let resultSum = timeMath.sum(str, addTime);
   console.log(resultSum);
   // // Alertで表示する
-  alert("value値は「" + resultSum + "」です");
+  alert("最終目的地到着時間は「" + resultSum + "」です");
 }
 
 // 時間の計算
