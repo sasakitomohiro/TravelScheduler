@@ -9,53 +9,57 @@ var lng = 141.14032745361328;
 var restaurant = [];
 var latitude = [];
 var longitude = [];
+var latlng = [];
 
 function restaurantVal(result) {
   for( var i in result.rest ) {
     restaurant[i] = result.rest[i].name;
     latitude[i] = result.rest[i].latitude;
     longitude[i] = result.rest[i].longitude;
-    // console.log(restaurant[i]);
+    // latlng[i] = { lat: result.rest[i].latitude, lng: result.rest[i].longitude }
+    console.log(latitude[i]);
     // getClickLatLng((latitude,longitude))
   }
 }
 
-(function(){
-
-  var url = 'https://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
-  var params = {
-    keyid: "7dee307b111f060e94791d3fe6d266cb",
-    format: 'json',
-    latitude: lat,
-    longitude: lng,
-    range: 1
-  };
-
-  var showResult = function(result){
-    if ( result.total_hit_count > 0 ) {
-      var res = '';
-      alert( result.total_hit_count + '件の結果が見つかりました。\n' );
-      for ( var i in result.rest ){
-        res += result.rest[i].id + ' ' + result.rest[i].name + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
-      }
-      // alert(res);
-    } else {
-      // alert( '検索結果が見つかりませんでした。' );
-    }
-  }
-
-  $.getJSON(url, params, function(result){
-    restaurantVal(result);
-    showResult(result);
-  });
-})(jQuery);
-
-
+function getRestaurantVal() {
+  return latitude;
+}
 
 
 function initMap() {
 
-  console.log(restaurant, latitude, longitude);
+  (function(){
+
+    var url = 'https://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
+    var params = {
+      keyid: gurunaviApiKey,
+      format: 'json',
+      latitude: lat,
+      longitude: lng,
+      range: 1
+    };
+
+    var showResult = function(result){
+      if ( result.total_hit_count > 0 ) {
+        var res = '';
+        alert( result.total_hit_count + '件の結果が見つかりました。\n' );
+        for ( var i in result.rest ){
+          res += result.rest[i].id + ' ' + result.rest[i].name + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
+        }
+        // alert(res);
+      } else {
+        // alert( '検索結果が見つかりませんでした。' );
+      }
+    }
+
+    $.getJSON(url, params, function(result){
+      restaurantVal(result);
+      showResult(result);
+    });
+  })(jQuery);
+
+  // console.log(restaurant, latlng);
 
   // var lat = 39.67231336658968;
   // var lng = 141.14032745361328;
@@ -90,6 +94,21 @@ function initMap() {
     map: map, // 描画先の地図
     preserveViewport: true, // 描画後に中心点をずらさない
   });
+
+  console.log(latitude, longitude);
+  var b = getRestaurantVal();
+  console.log(restaurant);
+  // console.log(b);
+  // console.log(latitude.length);
+  // for (var i in latitude) {
+  //   console.log(latitude[i]);
+  // }
+  // for( var i in latlng ) {
+    var marker = new google.maps.Marker({
+      position: (latitude[0], longitude[0]),
+      map: map
+    });
+  // }
 
   // ルート検索
   // d.route(request, function(result, status){
@@ -131,6 +150,7 @@ function getClickLatLng(lat_lng, map) {
   document.getElementById('lat').textContent = lat_lng.lat();
   document.getElementById('lng').textContent = lat_lng.lng();
   // document.getElementById('position').textContent = position;
+  console.log(lat_lng);
   // マーカーを設置
   var marker = new google.maps.Marker({
     position: lat_lng,
