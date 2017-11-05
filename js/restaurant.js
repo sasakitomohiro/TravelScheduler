@@ -17,8 +17,10 @@ function restaurantVal(result) {
     latitude[i] = result.rest[i].latitude;
     longitude[i] = result.rest[i].longitude;
     // latlng[i] = { lat: result.rest[i].latitude, lng: result.rest[i].longitude }
-    console.log(latitude[i]);
-    // getClickLatLng((latitude,longitude))
+
+    localStorage.setItem('Restraunts', JSON.stringify(result.rest));
+    // console.log(localStorage.getItem("Restraunts"));
+
   }
 }
 
@@ -28,7 +30,6 @@ function getRestaurantVal() {
 
 
 function initMap() {
-
   (function(){
 
     var url = 'https://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
@@ -80,13 +81,12 @@ function initMap() {
   //   ],
   //   travelMode: google.maps.DirectionsTravelMode.WALKING, // 交通手段(歩行。DRIVINGの場合は車)
   // };
-
   // trueになると1回クリックしたこととなる
   var count = false;
   // マップの生成
   var map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(39.7018784, 141.1363000), // マップの中心
-    zoom: 12 // ズームレベル
+    center: new google.maps.LatLng(39.67231336658968, 141.14032745361328), // マップの中心
+    zoom: 15 // ズームレベル
   });
 
   var d = new google.maps.DirectionsService(); // ルート検索オブジェクト
@@ -95,20 +95,24 @@ function initMap() {
     preserveViewport: true, // 描画後に中心点をずらさない
   });
 
-  console.log(latitude, longitude);
+  // console.log(latitude, longitude);
   var b = getRestaurantVal();
-  console.log(restaurant);
+  // console.log(restaurant);
   // console.log(b);
   // console.log(latitude.length);
   // for (var i in latitude) {
   //   console.log(latitude[i]);
   // }
-  // for( var i in latlng ) {
-    var marker = new google.maps.Marker({
-      position: (latitude[0], longitude[0]),
+  var restraunts = JSON.parse(localStorage.getItem('Restraunts'));
+  console.log(restraunts);
+  var marker = [];
+  for( var i in restraunts ) {
+    // getClickLatLng((latitude,longitude))
+    marker[i] = new google.maps.Marker({
+      position: new google.maps.LatLng(restraunts[i].latitude, restraunts[i].longitude),
       map: map
     });
-  // }
+  }
 
   // ルート検索
   // d.route(request, function(result, status){
@@ -144,21 +148,21 @@ function initMap() {
   });
 }
 
-function getClickLatLng(lat_lng, map) {
+// function getClickLatLng(lat_lng, map) {
 
   // 座標を表示
-  document.getElementById('lat').textContent = lat_lng.lat();
-  document.getElementById('lng').textContent = lat_lng.lng();
+  // document.getElementById('lat').textContent = lat_lng.lat();
+  // document.getElementById('lng').textContent = lat_lng.lng();
   // document.getElementById('position').textContent = position;
-  console.log(lat_lng);
+  // console.log(lat_lng);
   // マーカーを設置
-  var marker = new google.maps.Marker({
-    position: lat_lng,
-    map: map
-  });
+  // var marker = new google.maps.Marker({
+  //   position: lat_lng,
+  //   map: map
+  // });
 
 
   // 座標の中心をずらす
   // http://syncer.jp/google-maps-javascript-api-matome/map/method/panTo/
   // map.panTo(lat_lng);
-}
+// }
