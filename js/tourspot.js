@@ -49,7 +49,6 @@ var vm = new Vue({
     // 計算した結果を変数として利用したいときはここに記述する
     returnName: function() {
       var array = [];
-      // console.log("aaaa");
       for(var i = 0; i < this.name.length; i++) {
         array[i] = this.name[i].resourceName;
         console.log(array[i]);
