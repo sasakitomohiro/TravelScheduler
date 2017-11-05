@@ -1,5 +1,3 @@
-var googleMapsApiKey = "AIzaSyAfSkp02Oolofi2mSnRYBJBNDI6nL--WyM";
-var resasApiKey = "enEaijBPxOMF1ipXMXiKaey1nZwPpDpxEm4J1IsY";
 var vm = new Vue({
   el: "#app", // Vue.jsを使うタグのIDを指定
   data: {

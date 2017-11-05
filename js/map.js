@@ -1,5 +1,3 @@
-var googleMapsApiKey = "AIzaSyAfSkp02Oolofi2mSnRYBJBNDI6nL--WyM";
-var resasApiKey = "enEaijBPxOMF1ipXMXiKaey1nZwPpDpxEm4J1IsY";
 var src = "https://maps.googleapis.com/maps/api/js?key=" + googleMapsApiKey + "&callback=initMap";
 var sc = document.createElement('script');
 sc.src = src; //関数などで処理したものでもOK
