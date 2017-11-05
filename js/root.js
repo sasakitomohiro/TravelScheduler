@@ -30,15 +30,12 @@ function initMap() {
   ];
 
   var way = JSON.parse(localStorage.getItem("waypoint1"));
-  console.log(way);
 
-  if(way == true) {
+  if(way) {
     waypoint.push({location: new google.maps.LatLng(way.lat,way.lng)});
     console.log(way.lat,way.lng);
     localStorage.removeItem("waypoint1");
   }
-
-
 
   // waypoint.push({
   //   location: new google.maps.LatLng(39.7018784, 141.1363000)
@@ -57,19 +54,23 @@ function initMap() {
     center: new google.maps.LatLng(39.7018784, 141.1363000), // マップの中心
     zoom: 12 // ズームレベル
   });
-
+  var marker = [];
   // ResasAPIを参照
   for(var i in items) {
     // console.log(items[i].lat);
-    var marker = new google.maps.Marker({
+    marker[i] = new google.maps.Marker({
       position: new google.maps.LatLng(items[i].lat, items[i].lng),
       map: map
     });
     //クリックしたら指定したurlに遷移するイベント
-    google.maps.event.addListener(marker, 'click', (function(){
+    marker[i].addListener('click', (function(argument){
       // return function(){ location.href = url; };
+
+
       localStorage.setItem('waypoint1', JSON.stringify(items[i]));
+
       console.log(localStorage.getItem("waypoint1"));
+
       window.location.href = 'root.html';
     }));
   }
