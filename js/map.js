@@ -40,7 +40,7 @@ function initMap() {
       // localStorage.saveKey = position2;
       // localStorage.saveKey = position3;
       // localStorage.saveKey = position4;
-      window.location.href = 'root.html';
+      window.location.href = 'tourspot.html';
        count = false;
     }
   });
