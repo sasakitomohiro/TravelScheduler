@@ -16,16 +16,36 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
   <!-- Vue.js を読み込む -->
   <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
-
   <!-- 共通のCSSファイルを読み込む -->
   <link rel="stylesheet" href="css/style.css">
+ <!-- jquery/bootstrapを読み込む -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" rel="stylesheet"/>
 </head>
 
 <body>
+
   <!-- Vue.jsで読み込む -->
   <div id="app">
     <common-menu current="index"></common-menu>
     <div class="ui main container">
+
+      <ul>
+        <!-- pos に緯度経度の配列を保持  -->
+        <li>距離: <span id="value"></span>km</li>
+        <li>所要時間: 約<span id="time"></span>分</li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="input-group bootstrap-timepicker timepicker">
+      <input type="text" id="timepicker1" class="form-control input-small">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+      <input type="button" value="ボタン" onclick="getValue('timepicker1');">
     </div>
   </div>
   <div id="map">
@@ -34,7 +54,7 @@
 
   <!-- APIのURLを読み込むJavaScriptファイル --> 
   <script src="js/menu.js" charset="utf-8"></script>
-  <script src="js/apikey.js" charset="utf-8"></script>
+  <!-- <script src="js/apikey.js" charset="utf-8"></script> -->
   <!-- 各ページで使うJavaScriptファイルはこの行より下で読み込む -->
   <script src="js/root.js" charset="utf-8"></script>
-</html>
+  </html>

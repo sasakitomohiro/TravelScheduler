@@ -2,7 +2,8 @@ var vm = new Vue({
   el: "#app", // Vue.jsを使うタグのIDを指定
   data: {
     // Vue.jsで使う変数はここに記述する
-    name
+    name,
+    tour: []
   },
   methods: {
     // Vue.jsで使う関数はここで記述する
@@ -46,6 +47,7 @@ var vm = new Vue({
         array[i] = this.name[i].resourceName;
         console.log(array[i]);
       }
+      tour = array;
       return array;
     }
   }

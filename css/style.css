@@ -1,0 +1,7 @@
+.travel-image{
+  position: relative;
+  width: auto;
+  height:800px;
+  background: url('../img/lgf01a201401040100.jpg') center 30% no-repeat;
+  background-size: cover;
+}
