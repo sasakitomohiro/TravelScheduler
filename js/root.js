@@ -65,7 +65,7 @@ function getValue(idname){
   // value値を取得する
   var result = document.getElementById(idname).value;
   // var array = result.match(/[0-9]+\.?[0-9]*/g);
-  var str = result.slice(0, 5);
+  var str = result.slice(0, 4);
   // for(var i = 0; i < array.length; i++) {
   //     str += array[i];
   // }
