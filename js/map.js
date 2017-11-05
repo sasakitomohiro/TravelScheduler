@@ -49,8 +49,10 @@ function initMap() {
 function getClickLatLng(lat_lng, map) {
 
   // 座標を表示
-  document.getElementById('lat').textContent = lat_lng.lat();
-  document.getElementById('lng').textContent = lat_lng.lng();
+
+  // document.getElementById('lat').textContent = lat_lng.lat();
+  // document.getElementById('lng').textContent = lat_lng.lng();
+  // document.getElementById('position').textContent = position;
 
   // マーカーを設置
   var marker = new google.maps.Marker({
